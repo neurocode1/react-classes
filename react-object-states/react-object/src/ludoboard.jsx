@@ -32,7 +32,7 @@ export default function Ludoboard(){
         <p>ludo board</p>
         
         <p>blue: {move.blue}</p>
-        <button onClick={Updateblue}>1+</button>
+        <button onClick={Updatevalue}>1+</button>
         <p>red: {move.red}</p>
         <button onClick={Updatered}>1+</button>
         <p>yellow: {move.yellow}</p>

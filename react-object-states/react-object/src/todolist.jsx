@@ -1,65 +1,66 @@
-import {useState} from "react"
+import { useState } from "react"
 import { v4 as uuidv4 } from "uuid";
 
-export default function Todolist() {
 
-    let [todo,settodo] = useState([{task:"simple-task",id: uuidv4()}])
-    let[newtodo,setnewtodo] = useState("")
+export default function Todolist(){
+    let [ todo,settodo] = useState([{task : "eat", id : uuidv4()}]);
+    let[newtodo,setnewtodo] = useState("");
 
+    function addtask(event){
+        setnewtodo(event.target.value);
 
-    function addtask(){
-        settodo(
-            function(oldtodo){
-               return [...oldtodo,{task:newtodo,id: uuidv4()}]
-            }
-        )
-        setnewtodo("")
     }
+
+     function  addtodo(){
+         settodo ((prevtodo)=>[...prevtodo,{task : newtodo, id : uuidv4()}])
+        // settodo([...todo,{task : newtodo, id : uuidv4()}])
+    
+        setnewtodo("");    
+    
+    
+}
+
+
+function updatetodo(){
+    let newarry =todo.map((todos)=>{
+        return {...todo, task: todos.task.toUpperCase()}
         
-        
+    })
+    settodo(newarry);
 
-        function updavalue(event){
-            setnewtodo(event.target.value)
-        }
-
-        function deletetask(id){
-            settodo(
-                function(oldtodo){
-                    return oldtodo.filter((todo) => todo.id !== id)
-                }
-            )
-        }
+}
 
 
+  
 
-    return (
+    return(
         <div>
-            <input placeholder=" enter here" value={newtodo}  onChange={updavalue} ></input>
-             <br></br>
-            <button onClick={addtask}>Add</button>
-            <br></br>
-            <br></br> 
-            <br></br>
-            <br></br>
-            
-            <hr></hr>
-            <h1>To-Do List one</h1>
+         <input placeholder="enter todo" value={newtodo} onChange={addtask}></input>
+         <br></br>
+         <button onClick={addtodo}>add</button>
+         <br></br>
+         <br></br>
+         <br></br>
+         <br></br><br></br>
+         <hr></hr>
 
-            <ul>
-                {
-                    todo.map((todos) => (
-                         <li key={todos.id}>{todos.task}
-                         <span>{todos.task}</span>
-                         &nbsp;&nbsp;&nbsp;
-                         <button onClick={() => deletetask(todos.id)}>delete</button>
-                         </li>
-                    ))
-                }
-            </ul>
+        <p>todo list</p>
+
+
+        <ul>
+           {todo.map((todos)=>(
+            <li key={todos.id}>
+                <span>{todos.task}</span>
+                &nbsp;&nbsp;&nbsp;
+                <button onClick={() => deletetodo(todos.id)}>delete</button>
+            </li>
+           ))
+           
+           }
+
+        </ul>
+     <button onClick={updatetodo}>uppercase</button>
 
         </div>
     )
-    }
-
-
-
+}

@@ -3,7 +3,7 @@ import { v4 as uuidv4 } from "uuid";
 
 
 export default function Todolist(){
-    let [ todo,settodo] = useState([{task : "eat", id : uuidv4()}]);
+    let [ todo,settodo] = useState([{task : "eat", id : uuidv4() , isdone : false}]);
     let[newtodo,setnewtodo] = useState("");
 
     function addtask(event){
@@ -12,7 +12,7 @@ export default function Todolist(){
     }
 
      function  addtodo(){
-         settodo ((prevtodo)=>[...prevtodo,{task : newtodo, id : uuidv4()}])
+         settodo ((prevtodo)=>[...prevtodo,{task : newtodo, id : uuidv4() , isdone : false}])
         // settodo([...todo,{task : newtodo, id : uuidv4()}])
     
         setnewtodo("");    
@@ -53,6 +53,7 @@ function updatetodo(){
                 <span>{todos.task}</span>
                 &nbsp;&nbsp;&nbsp;
                 <button onClick={() => deletetodo(todos.id)}>delete</button>
+                <button onClick={() => updatetodo(todos.id)}>uppercase</button>
             </li>
            ))
            

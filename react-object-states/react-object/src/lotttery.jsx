@@ -2,18 +2,19 @@
 import { useState } from "react"
 import "./lottery.css"
 import {genticket ,sum} from "./ticket"
+import Ticket from "./tickets"  
 
 
 
-export default  function Lottery(){
+export default  function Lottery({ n , wincondtion }){
 
-    let [ticket,setticket] = useState(genticket(3))
-    let iswining = sum(ticket)=== 15;
+    let [ticket,setticket] = useState(genticket(n))
+    let iswining = wincondtion(ticket) ;
 
 
 
    function buynewticket(){
-    setticket(genticket(3))
+    setticket(genticket(n))
 
    }
 
@@ -26,9 +27,7 @@ export default  function Lottery(){
        <h1>Lottery ticket</h1>
 
        <div className="ticket">
-        <span>{ticket[0]}</span>
-        <span>{ticket[1]}</span>
-        <span>{ticket[2]}</span>
+        <Ticket ticket={ticket}/>
         <h3>{iswining && "You win!"}</h3>
        </div>
        <h3>{iswining && "Congratulations! you got it right!"}</h3>

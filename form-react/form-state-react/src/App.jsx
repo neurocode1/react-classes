@@ -5,6 +5,7 @@ import './App.css'
 import Form from './form'
 import Comment from './commentform'
 import Count from './counter'
+import Joker from './joker'
 
 function App() {
   
@@ -12,7 +13,8 @@ function App() {
     <>
      {/* <Form/> */}
      {/* <Comment/> */}
-     <Count/>
+     {/* <Count/> */}
+     <Joker/>
 
     </>
     )

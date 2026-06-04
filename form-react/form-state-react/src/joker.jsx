@@ -52,50 +52,52 @@ import { useEffect, useState } from "react"
 
 
 
-export default  function joke(){
-
-    let [ joke,setjoke ]= useState({})
-
-
-   const url = "https://official-joke-api.appspot.com/random_joke"
 
 
 
-   const getjoke = async () => {
-    let Response = await fetch (url)
-   let  jsonreposne = await Response.json()
-   console.log (jsonreposne);
-   setjoke({setup : jsonreposne.setup , punchline : jsonreposne.punchline})
-   }
 
 
+export default function joke(){
 
-   useEffect(()=>{
-    async function getnewjoke(){
-        let Response = await fetch (url)
-   let  jsonreposne = await Response.json()
-   console.log (jsonreposne);
-   setjoke({setup : jsonreposne.setup , punchline : jsonreposne.punchline})
 
+    let [joke , setjoke ]= useState({})
+
+
+    const url ="https://official-joke-api.appspot.com/random_joke"
+
+    
+    const  getjoke = async() => {
+        let   reposne = await fetch (url);
+        let jsonreposne = await reposne.json();
+        console.log (jsonreposne)
+        setjoke({setup : jsonreposne.setup , punchline : jsonreposne.punchline})
+
+        
     }
 
-    getjoke();
-
-},[])
 
 
-
+    useEffect(()=>{
+        async function newjoke(){
+            let   reposne = await fetch (url);
+        let jsonreposne = await reposne.json();
+        console.log (jsonreposne)
+        setjoke({setup : jsonreposne.setup , punchline : jsonreposne.punchline})
+            
+        }
+        newjoke()
+    } ,[])
 
 
 
     return(
+
         <div>
 
             <h1>{joke.setup}</h1>
             <h2>{joke.punchline}</h2>
 
-            <button onClick={getjoke}>joke</button>
-
+            <button onClick={getjoke}>new joke</button>
 
 
         </div>
